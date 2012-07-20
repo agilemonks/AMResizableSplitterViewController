@@ -11,4 +11,7 @@
 @interface ViewController : UIViewController
 @property (nonatomic) UIViewController *controller1;
 @property (nonatomic) UIViewController *controller2;
+@property (nonatomic) CGFloat splitterPosition;
+
+-(void)setSplitterPosition:(CGFloat)splitterPosition animated:(BOOL)animated;
 @end

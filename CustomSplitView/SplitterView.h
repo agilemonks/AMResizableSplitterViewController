@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SplitterView : UIView
+@class SplitterView;
 
+@protocol SplitterViewDelegate <NSObject>
+-(void)splitterView:(SplitterView*)splitterView moveByOffset:(CGFloat)offset;
+
+@end
+
+@interface SplitterView : UIView
+@property (nonatomic, weak) id<SplitterViewDelegate> delegate;
+//for draging while in landscape
+@property CGFloat minX;
+@property CGFloat maxX;
+//for dragging while in portrait
+@property CGFloat minY;
+@property CGFloat maxY;
 @end
