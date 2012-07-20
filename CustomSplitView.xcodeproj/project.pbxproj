@@ -13,13 +13,13 @@
 		08DF3D1B15B898C5000A339D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 08DF3D1915B898C5000A339D /* InfoPlist.strings */; };
 		08DF3D1D15B898C5000A339D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DF3D1C15B898C5000A339D /* main.m */; };
 		08DF3D2115B898C5000A339D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DF3D2015B898C5000A339D /* AppDelegate.m */; };
-		08DF3D2415B898C5000A339D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DF3D2315B898C5000A339D /* ViewController.m */; };
-		08DF3D2715B898C5000A339D /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08DF3D2515B898C5000A339D /* ViewController.xib */; };
+		08DF3D2415B898C5000A339D /* AMResizableSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DF3D2315B898C5000A339D /* AMResizableSplitViewController.m */; };
 		08DF3D3015B898F3000A339D /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DF3D2E15B898F3000A339D /* ImageViewController.m */; };
 		08DF3D3115B898F3000A339D /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08DF3D2F15B898F3000A339D /* ImageViewController.xib */; };
 		08DF3D3315B89D32000A339D /* pdolls.png in Resources */ = {isa = PBXBuildFile; fileRef = 08DF3D3215B89D32000A339D /* pdolls.png */; };
 		08DF3D3515B89D7B000A339D /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 08DF3D3415B89D7B000A339D /* background.png */; };
-		08DF3D3815B8A112000A339D /* SplitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DF3D3715B8A112000A339D /* SplitterView.m */; };
+		08DF3D3815B8A112000A339D /* AMResizableSplitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DF3D3715B8A112000A339D /* AMResizableSplitterView.m */; };
+		08DF3D3F15B9F095000A339D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DF3D3E15B9F095000A339D /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,16 +33,16 @@
 		08DF3D1E15B898C5000A339D /* CustomSplitView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CustomSplitView-Prefix.pch"; sourceTree = "<group>"; };
 		08DF3D1F15B898C5000A339D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		08DF3D2015B898C5000A339D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		08DF3D2215B898C5000A339D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		08DF3D2315B898C5000A339D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		08DF3D2615B898C5000A339D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		08DF3D2215B898C5000A339D /* AMResizableSplitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AMResizableSplitViewController.h; sourceTree = "<group>"; };
+		08DF3D2315B898C5000A339D /* AMResizableSplitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AMResizableSplitViewController.m; sourceTree = "<group>"; };
 		08DF3D2D15B898F3000A339D /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		08DF3D2E15B898F3000A339D /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		08DF3D2F15B898F3000A339D /* ImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
 		08DF3D3215B89D32000A339D /* pdolls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pdolls.png; sourceTree = "<group>"; };
 		08DF3D3415B89D7B000A339D /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		08DF3D3615B8A112000A339D /* SplitterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitterView.h; sourceTree = "<group>"; };
-		08DF3D3715B8A112000A339D /* SplitterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitterView.m; sourceTree = "<group>"; };
+		08DF3D3615B8A112000A339D /* AMResizableSplitterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMResizableSplitterView.h; sourceTree = "<group>"; };
+		08DF3D3715B8A112000A339D /* AMResizableSplitterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMResizableSplitterView.m; sourceTree = "<group>"; };
+		08DF3D3E15B9F095000A339D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08DF3D3F15B9F095000A339D /* QuartzCore.framework in Frameworks */,
 				08DF3D1115B898C5000A339D /* UIKit.framework in Frameworks */,
 				08DF3D1315B898C5000A339D /* Foundation.framework in Frameworks */,
 				08DF3D1515B898C5000A339D /* CoreGraphics.framework in Frameworks */,
@@ -79,6 +80,7 @@
 		08DF3D0F15B898C5000A339D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				08DF3D3E15B9F095000A339D /* QuartzCore.framework */,
 				08DF3D1015B898C5000A339D /* UIKit.framework */,
 				08DF3D1215B898C5000A339D /* Foundation.framework */,
 				08DF3D1415B898C5000A339D /* CoreGraphics.framework */,
@@ -91,11 +93,10 @@
 			children = (
 				08DF3D1F15B898C5000A339D /* AppDelegate.h */,
 				08DF3D2015B898C5000A339D /* AppDelegate.m */,
-				08DF3D2215B898C5000A339D /* ViewController.h */,
-				08DF3D2315B898C5000A339D /* ViewController.m */,
-				08DF3D2515B898C5000A339D /* ViewController.xib */,
-				08DF3D3615B8A112000A339D /* SplitterView.h */,
-				08DF3D3715B8A112000A339D /* SplitterView.m */,
+				08DF3D2215B898C5000A339D /* AMResizableSplitViewController.h */,
+				08DF3D2315B898C5000A339D /* AMResizableSplitViewController.m */,
+				08DF3D3615B8A112000A339D /* AMResizableSplitterView.h */,
+				08DF3D3715B8A112000A339D /* AMResizableSplitterView.m */,
 				08DF3D2D15B898F3000A339D /* ImageViewController.h */,
 				08DF3D2E15B898F3000A339D /* ImageViewController.m */,
 				08DF3D2F15B898F3000A339D /* ImageViewController.xib */,
@@ -169,7 +170,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				08DF3D1B15B898C5000A339D /* InfoPlist.strings in Resources */,
-				08DF3D2715B898C5000A339D /* ViewController.xib in Resources */,
 				08DF3D3115B898F3000A339D /* ImageViewController.xib in Resources */,
 				08DF3D3315B89D32000A339D /* pdolls.png in Resources */,
 				08DF3D3515B89D7B000A339D /* background.png in Resources */,
@@ -185,9 +185,9 @@
 			files = (
 				08DF3D1D15B898C5000A339D /* main.m in Sources */,
 				08DF3D2115B898C5000A339D /* AppDelegate.m in Sources */,
-				08DF3D2415B898C5000A339D /* ViewController.m in Sources */,
+				08DF3D2415B898C5000A339D /* AMResizableSplitViewController.m in Sources */,
 				08DF3D3015B898F3000A339D /* ImageViewController.m in Sources */,
-				08DF3D3815B8A112000A339D /* SplitterView.m in Sources */,
+				08DF3D3815B8A112000A339D /* AMResizableSplitterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,14 +200,6 @@
 				08DF3D1A15B898C5000A339D /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		08DF3D2515B898C5000A339D /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				08DF3D2615B898C5000A339D /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -305,6 +297,7 @@
 				08DF3D2C15B898C5000A339D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

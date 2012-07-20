@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ImageViewController.h"
-#import "ViewController.h"
+#import "AMResizableSplitViewController.h"
 
 @implementation AppDelegate
 
@@ -16,8 +16,9 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-	self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
+	self.viewController = [[AMResizableSplitViewController alloc] init];
 	self.window.rootViewController = self.viewController;
+	self.viewController.minimumView2Size = CGSizeMake(200, 200);
     [self.window makeKeyAndVisible];
 	ImageViewController *i1 = [[ImageViewController alloc] init];
 	ImageViewController *i2 = [[ImageViewController alloc] init];
