@@ -24,8 +24,8 @@
 	ImageViewController *i2 = [[ImageViewController alloc] init];
 	[i1 view];
 	[i2 view];
-	i1.imageView.image = [UIImage imageNamed:@"pdolls"];
-	i2.imageView.image = [UIImage imageNamed:@"background"];
+	i1.imageView.image = [UIImage imageNamed:@"image1.jpg"];
+	i2.imageView.image = [UIImage imageNamed:@"image2.jpg"];
 	self.viewController.controller1 = i1;
 	self.viewController.controller2 = i2;
     return YES;

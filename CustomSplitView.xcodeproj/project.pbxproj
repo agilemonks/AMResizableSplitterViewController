@@ -16,10 +16,10 @@
 		08DF3D2415B898C5000A339D /* AMResizableSplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DF3D2315B898C5000A339D /* AMResizableSplitViewController.m */; };
 		08DF3D3015B898F3000A339D /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DF3D2E15B898F3000A339D /* ImageViewController.m */; };
 		08DF3D3115B898F3000A339D /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08DF3D2F15B898F3000A339D /* ImageViewController.xib */; };
-		08DF3D3315B89D32000A339D /* pdolls.png in Resources */ = {isa = PBXBuildFile; fileRef = 08DF3D3215B89D32000A339D /* pdolls.png */; };
-		08DF3D3515B89D7B000A339D /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 08DF3D3415B89D7B000A339D /* background.png */; };
 		08DF3D3815B8A112000A339D /* AMResizableSplitterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08DF3D3715B8A112000A339D /* AMResizableSplitterView.m */; };
 		08DF3D3F15B9F095000A339D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08DF3D3E15B9F095000A339D /* QuartzCore.framework */; };
+		08DF3D4215B9FD0C000A339D /* image1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 08DF3D4015B9FD0C000A339D /* image1.jpg */; };
+		08DF3D4315B9FD0C000A339D /* image2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 08DF3D4115B9FD0C000A339D /* image2.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,11 +38,11 @@
 		08DF3D2D15B898F3000A339D /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
 		08DF3D2E15B898F3000A339D /* ImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageViewController.m; sourceTree = "<group>"; };
 		08DF3D2F15B898F3000A339D /* ImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
-		08DF3D3215B89D32000A339D /* pdolls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pdolls.png; sourceTree = "<group>"; };
-		08DF3D3415B89D7B000A339D /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		08DF3D3615B8A112000A339D /* AMResizableSplitterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMResizableSplitterView.h; sourceTree = "<group>"; };
 		08DF3D3715B8A112000A339D /* AMResizableSplitterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMResizableSplitterView.m; sourceTree = "<group>"; };
 		08DF3D3E15B9F095000A339D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		08DF3D4015B9FD0C000A339D /* image1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image1.jpg; sourceTree = "<group>"; };
+		08DF3D4115B9FD0C000A339D /* image2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = image2.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +112,8 @@
 				08DF3D1915B898C5000A339D /* InfoPlist.strings */,
 				08DF3D1C15B898C5000A339D /* main.m */,
 				08DF3D1E15B898C5000A339D /* CustomSplitView-Prefix.pch */,
-				08DF3D3215B89D32000A339D /* pdolls.png */,
-				08DF3D3415B89D7B000A339D /* background.png */,
+				08DF3D4015B9FD0C000A339D /* image1.jpg */,
+				08DF3D4115B9FD0C000A339D /* image2.jpg */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -171,8 +171,8 @@
 			files = (
 				08DF3D1B15B898C5000A339D /* InfoPlist.strings in Resources */,
 				08DF3D3115B898F3000A339D /* ImageViewController.xib in Resources */,
-				08DF3D3315B89D32000A339D /* pdolls.png in Resources */,
-				08DF3D3515B89D7B000A339D /* background.png in Resources */,
+				08DF3D4215B9FD0C000A339D /* image1.jpg in Resources */,
+				08DF3D4315B9FD0C000A339D /* image2.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
