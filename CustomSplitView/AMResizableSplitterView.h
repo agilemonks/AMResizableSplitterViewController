@@ -10,7 +10,9 @@
 @class AMResizableSplitterView;
 
 @protocol AMResizableSplitterViewDelegate <NSObject>
+-(void)splitterViewWillStartTrackingTouches:(AMResizableSplitterView*)splitterView;
 -(void)splitterView:(AMResizableSplitterView*)splitterView moveByOffset:(CGFloat)offset;
+-(void)splitterViewDidEndTrackingTouches:(AMResizableSplitterView*)splitterView;
 
 @end
 

@@ -118,6 +118,18 @@
 	}
 }
 
+-(void)splitterViewWillStartTrackingTouches:(AMResizableSplitterView *)splitterView
+{
+	if ([self.delegate respondsToSelector:@selector(willMoveSplitter:)])
+		[self.delegate willMoveSplitter:self];
+}
+
+-(void)splitterViewDidEndTrackingTouches:(AMResizableSplitterView *)splitterView
+{
+	if ([self.delegate respondsToSelector:@selector(didMoveSplitter:)])
+		[self.delegate didMoveSplitter:self];
+}
+
 -(void)splitterView:(AMResizableSplitterView*)splitterView moveByOffset:(CGFloat)offset
 {
 	BOOL isLand = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
@@ -211,5 +223,5 @@
 @synthesize splitterView=_splitterView;
 @synthesize minimumView1Size=_minimumView1Size;
 @synthesize minimumView2Size=_minimumView2Size;
-
+@synthesize delegate=_delegate;
 @end

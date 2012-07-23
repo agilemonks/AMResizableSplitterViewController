@@ -8,8 +8,16 @@
 #import <UIKit/UIKit.h>
 
 @class AMResizableSplitterView;
+@class AMResizableSplitViewController;
+
+@protocol AMResizableSplitViewControllerDelegate <NSObject>
+@optional
+-(void)willMoveSplitter:(AMResizableSplitViewController*)controller;
+-(void)didMoveSplitter:(AMResizableSplitViewController*)controller;
+@end
 
 @interface AMResizableSplitViewController : UIViewController
+@property (nonatomic, weak) id<AMResizableSplitViewControllerDelegate> delegate;
 
 //the view controllers displayed in the split view
 @property (nonatomic) UIViewController *controller1;
