@@ -10,6 +10,10 @@
 
 #define SPLITTER_LENGTH 20
 
+@interface AMSplitContainer : UIView
+@property (nonatomic, weak) AMResizableSplitViewController *controller;
+@end
+
 #pragma mark - class extension
 @interface AMResizableSplitViewController () <AMResizableSplitterViewDelegate> {
 	BOOL _handlingMove;
@@ -35,9 +39,11 @@
 
 -(void)loadView
 {
-	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 768, 1024)];
+	AMSplitContainer *view = [[AMSplitContainer alloc] initWithFrame:CGRectMake(0, 0, 768, 1024)];
 	view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
 	view.autoresizesSubviews=NO;
+	view.clipsToBounds=YES;
+	view.controller = self;
 	self.view = view;
 }
 
@@ -45,14 +51,16 @@
 {
 	[super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	self.splitterView = [[AMResizableSplitterView alloc] initWithFrame:CGRectMake(502, 0, SPLITTER_LENGTH, 748)];
+	CGRect frame = self.view.frame;
+	CGFloat sectionLen = floorf((frame.size.width - SPLITTER_LENGTH)/2);
+	self.splitterView = [[AMResizableSplitterView alloc] initWithFrame:CGRectMake(sectionLen, 0, SPLITTER_LENGTH, frame.size.height)];
 	self.splitterView.delegate = self;
 	[self.view addSubview:self.splitterView];
 }
 
--(void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-	[super viewDidAppear:animated];
+	[super viewWillAppear:animated];
 	[self adjustToDefaultFrames];
 }
 
@@ -64,6 +72,41 @@
 }
 
 #pragma mark - meat & potatos
+
+-(void)viewFrameDidChange
+{
+	CGRect ourFrame = self.view.frame;
+	CGRect r1 = self.controller1.view.frame;
+	CGRect r2 = self.controller2.view.frame;
+	CGRect rs = self.splitterView.frame;
+	if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+		//adjust for height in case we have a toolbar
+		if (r1.size.height > ourFrame.size.height) {
+			r1.size.height = ourFrame.size.height;
+			r2.size.height = ourFrame.size.height;
+			rs.size.height = ourFrame.size.height;
+			if ((r1.size.width + r2.size.width + rs.size.width) < ourFrame.size.width) {
+				//need to adjust the width. just add the diff to r2
+				CGFloat diff = ourFrame.size.width - r1.size.width - r2.size.width - rs.size.width;
+				r2.size.width += diff;
+			}
+		}
+	} else {
+		if (r1.size.width < ourFrame.size.width) {
+			r1.size.width = ourFrame.size.width;
+			r2.size.width = ourFrame.size.width;
+			rs.size.width = ourFrame.size.width;
+			if ((r1.size.height + r2.size.height + rs.size.height) > ourFrame.size.height) {
+				//need to subtract from the height. just subtract diff from r2
+				CGFloat diff = ourFrame.size.height - r1.size.height - r2.size.height - rs.size.height;
+				r2.size.height += diff;
+			}
+		}
+	}
+	self.controller1.view.frame = r1;
+	self.controller2.view.frame = r2;
+	self.splitterView.frame = rs;
+}
 
 -(void)rotateChildren:(UIInterfaceOrientation)destOrientation
 {
@@ -90,14 +133,15 @@
 	r2.size.height = r2.size.width;
 	r2.size.width = tmp;
 	//adjust rects for status bar height
+	CGFloat halfBar = floorf(SPLITTER_LENGTH / 2);
 	if (toLand) {
-		r1.size.height -= 20;
-		r2.size.height -= 20;
-		dividerFrame.size.height -= 20;
+		r1.size.height -= halfBar;
+		r2.size.height -= halfBar;
+		dividerFrame.size.height -= halfBar;
 	} else {
-		r1.size.width += 20;
-		r2.size.width += 20;
-		dividerFrame.size.width += 20;
+		r1.size.width += halfBar;
+		r2.size.width += halfBar;
+		dividerFrame.size.width += halfBar;
 	}
 	//set the frames
 	self.splitterView.frame = dividerFrame;
@@ -107,14 +151,17 @@
 
 -(void)adjustToDefaultFrames
 {
+	CGRect ourFrame = self.view.frame;
+	CGFloat sectionLen = floorf((ourFrame.size.width - SPLITTER_LENGTH) / 2);
 	if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
-		self.controller1.view.frame = CGRectMake(0, 0, 502, 748);
-		self.controller2.view.frame = CGRectMake(522, 0, 502, 748);
-		self.splitterView.frame = CGRectMake(502, 0, SPLITTER_LENGTH, 748);
+		self.controller1.view.frame = CGRectMake(0, 0, sectionLen, ourFrame.size.height);
+		self.controller2.view.frame = CGRectMake(sectionLen+SPLITTER_LENGTH, 0, sectionLen, ourFrame.size.height);
+		self.splitterView.frame = CGRectMake(sectionLen, 0, SPLITTER_LENGTH, ourFrame.size.height);
 	} else {
-		self.controller1.view.frame = CGRectMake(0, 0, 768, 502);
-		self.controller2.view.frame = CGRectMake(0, 522, 768, 502);
-		self.splitterView.frame = CGRectMake(0, 502, 768, SPLITTER_LENGTH);
+		sectionLen = floorf((ourFrame.size.height - SPLITTER_LENGTH) / 2);
+		self.controller1.view.frame = CGRectMake(0, 0, ourFrame.size.width, sectionLen);
+		self.controller2.view.frame = CGRectMake(0, sectionLen+SPLITTER_LENGTH, ourFrame.size.width, sectionLen);
+		self.splitterView.frame = CGRectMake(0, sectionLen, ourFrame.size.width, SPLITTER_LENGTH);
 	}
 }
 
@@ -224,4 +271,12 @@
 @synthesize minimumView1Size=_minimumView1Size;
 @synthesize minimumView2Size=_minimumView2Size;
 @synthesize delegate=_delegate;
+@end
+
+@implementation AMSplitContainer
+-(void)setFrame:(CGRect)frame
+{
+	[super setFrame:frame];
+	[self.controller viewFrameDidChange];
+}
 @end

@@ -36,9 +36,7 @@ Take a look at the AppDelegate class for sample usage. Here's the snippet that s
 
 ## To Do
 
-- get rid of magic numbers
-- use superview's size instead of fixed fullscreen sizes
-- support nesting
+- allow specifying optional gradient colors for splitter background
 
 ## License
 
