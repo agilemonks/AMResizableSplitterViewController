@@ -8,43 +8,30 @@
 #import "AMResizableSplitterView.h"
 
 @interface AMResizableSplitterGripView : UIView
-
+@property (assign) BOOL gripVisible;
 @end
 
 @interface AMResizableSplitterView()
 @property (nonatomic, weak) AMResizableSplitterGripView *gripView;
 @end
 
+#define OVAL_WIDTH 8
+#define OVAL_HEIGHT 44
+
 @implementation AMResizableSplitterView
 
 - (id)initWithFrame:(CGRect)frame
 {
 	if ((self = [super initWithFrame:frame])) {
-		self.backgroundColor = [UIColor brownColor];
-		AMResizableSplitterGripView *gripView = [[AMResizableSplitterGripView alloc] initWithFrame:CGRectMake(fabs(frame.size.width/2), 2, 30, 16)];
-		gripView.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+		self.backgroundColor = [UIColor whiteColor];
+		AMResizableSplitterGripView *gripView = [[AMResizableSplitterGripView alloc] initWithFrame:CGRectMake(fabs(frame.size.width/2), 2, OVAL_WIDTH, OVAL_HEIGHT)];
+		gripView.translatesAutoresizingMaskIntoConstraints = NO;
+		
 		self.gripView = gripView;
+		gripView.gripVisible = YES;
 		[self addSubview:gripView];
 		gripView.center = CGPointMake(fabsf(self.bounds.size.width/2), fabsf(self.bounds.size.height/2));
 		gripView.backgroundColor = [UIColor clearColor];
-
-		CAGradientLayer *shineLayer = [CAGradientLayer layer];
-		shineLayer.frame = self.bounds;
-		shineLayer.colors = [NSArray arrayWithObjects:
-							 (id)[UIColor colorWithWhite:0.8f alpha:0.4f].CGColor,
-							 (id)[UIColor colorWithWhite:0.8f alpha:0.2f].CGColor,
-							 (id)[UIColor colorWithWhite:0.75f alpha:0.2f].CGColor,
-							 (id)[UIColor colorWithWhite:0.4f alpha:0.2f].CGColor,
-							 (id)[UIColor colorWithWhite:1.0f alpha:0.4f].CGColor,
-							 nil];
-		shineLayer.locations = [NSArray arrayWithObjects:
-								[NSNumber numberWithFloat:0.0f],
-								[NSNumber numberWithFloat:0.3f],
-								[NSNumber numberWithFloat:0.3f],
-								[NSNumber numberWithFloat:0.8f],
-								[NSNumber numberWithFloat:1.0f],
-								nil];
-		[self.layer addSublayer:shineLayer];
 	}
 	return self;
 }
@@ -56,11 +43,11 @@
 	CGRect frame = self.frame;
 	if (frame.size.width > frame.size.height) {
 		//portrait
-		gframe.size.width = 30;
-		gframe.size.height = 16;
+		gframe.size.width = OVAL_HEIGHT;
+		gframe.size.height = OVAL_WIDTH;
 	} else {
-		gframe.size.width = 16;
-		gframe.size.height = 30;
+		gframe.size.width = OVAL_WIDTH;
+		gframe.size.height = OVAL_HEIGHT;
 	}
 	self.gripView.frame = gframe;
 	self.gripView.center = CGPointMake(fabsf(self.bounds.size.width/2), fabsf(self.bounds.size.height/2));
@@ -95,38 +82,35 @@
 		[self.delegate splitterViewDidEndTrackingTouches:self];
 }
 
+-(BOOL)gripVisible
+{
+	return self.gripView.gripVisible;
+}
+
+-(void)setGripVisible:(BOOL)gripVisible
+{
+	self.gripView.gripVisible = gripVisible;
+}
+
 @end
 
 @implementation AMResizableSplitterGripView
 
 -(void)drawRect:(CGRect)rect
 {
+	if (!self.gripVisible)
+		return;
 	CGRect frame = self.frame;
 	CGRect sframe = self.superview.frame;
-	UIColor *gray = [UIColor colorWithWhite:0.4 alpha:1];
-	if (sframe.size.width > sframe.size.height) {
-		//portrait
-		CGRect lineRect = CGRectMake(0, 1, frame.size.width, 1);
-		for (int i=0; i < 3; i++) {
-			[gray set];
-			UIRectFill(lineRect);
-			lineRect.origin.y += 1;
-			[[UIColor whiteColor] set];
-			UIRectFill(lineRect);
-			lineRect.origin.y += 4;
-		}
-	} else {
-		//landscape
-		CGRect lineRect = CGRectMake(1, 0, 1, frame.size.height-2);
-		for (int i=0; i < 3; i++) {
-			[gray set];
-			UIRectFill(lineRect);
-			lineRect.origin.x += 1;
-			[[UIColor whiteColor] set];
-			UIRectFill(lineRect);
-			lineRect.origin.x += 4;
-		}
-	}
+	BOOL portrait = sframe.size.width > sframe.size.height;
+	CGRect ovalRect = CGRectMake(fabs((frame.size.width - OVAL_WIDTH)/2) - OVAL_WIDTH, fabs((frame.size.height - OVAL_HEIGHT)/2), OVAL_WIDTH, OVAL_HEIGHT);
+	if (ovalRect.origin.x < 0) ovalRect.origin.x = 0;
+	if (portrait)
+		ovalRect = CGRectMake(0, 0, ovalRect.size.height, ovalRect.size.width);
+	UIColor *ovalColor = [UIColor colorWithHexString:@"cbcbcb"];
+	UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:ovalRect cornerRadius:12];
+	[ovalColor setFill];
+	[path fill];
 }
 
 @end

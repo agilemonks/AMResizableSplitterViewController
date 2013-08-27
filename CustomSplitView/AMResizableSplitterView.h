@@ -18,4 +18,5 @@
 
 @interface AMResizableSplitterView : UIView
 @property (nonatomic, weak) id<AMResizableSplitterViewDelegate> delegate;
+@property (nonatomic, assign) BOOL gripVisible;
 @end
