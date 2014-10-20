@@ -75,11 +75,13 @@
 
 -(void)viewFrameDidChange
 {
+	CGRect winFrame = self.view.window.frame;
+	BOOL isWide = winFrame.size.width > winFrame.size.height;
 	CGRect ourFrame = self.view.frame;
 	CGRect r1 = self.controller1.view.frame;
 	CGRect r2 = self.controller2.view.frame;
 	CGRect rs = self.splitterView.frame;
-	if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+	if (isWide) {
 		//adjust for height in case we have a toolbar
 		if (r1.size.height > ourFrame.size.height) {
 			r1.size.height = ourFrame.size.height;
@@ -151,9 +153,11 @@
 
 -(void)adjustToDefaultFrames
 {
+	CGRect winFrame = self.view.window.frame;
+	BOOL isWide = winFrame.size.width > winFrame.size.height;
 	CGRect ourFrame = self.view.frame;
 	CGFloat sectionLen = floorf((ourFrame.size.width - SPLITTER_LENGTH) / 2);
-	if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+	if (isWide) {
 		self.controller1.view.frame = CGRectMake(0, 0, sectionLen, ourFrame.size.height);
 		self.controller2.view.frame = CGRectMake(sectionLen+SPLITTER_LENGTH, 0, sectionLen, ourFrame.size.height);
 		self.splitterView.frame = CGRectMake(sectionLen, 0, SPLITTER_LENGTH, ourFrame.size.height);
@@ -179,7 +183,8 @@
 
 -(void)splitterView:(AMResizableSplitterView*)splitterView moveByOffset:(CGFloat)offset
 {
-	BOOL isLand = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
+	CGRect winFrame = self.view.window.frame;
+	BOOL isLand = winFrame.size.width > winFrame.size.height;
 	CGRect dividerRect = splitterView.frame;
 
 	//validate the offset is in the acceptable range
@@ -197,7 +202,7 @@
 	
 	CGRect r1 = self.controller1.view.frame;
 	CGRect r2 = self.controller2.view.frame;
-	if (UIInterfaceOrientationIsLandscape(self.interfaceOrientation)) {
+	if (isLand) {
 		dividerRect.origin.x = dividerRect.origin.x + offset;
 		r1.size.width += offset;
 		r2.origin.x += offset;
@@ -245,7 +250,7 @@
 
 -(CGFloat)splitterPosition
 {
-	if ((UIInterfaceOrientationIsLandscape(self.interfaceOrientation)))
+	if (self.view.frame.size.width > self.view.frame.size.height)
 		return self.splitterView.frame.origin.x + floorf(SPLITTER_LENGTH/2);
 	return self.splitterView.frame.origin.y + floorf(SPLITTER_LENGTH/2);
 }
@@ -258,19 +263,12 @@
 -(void)setSplitterPosition:(CGFloat)splitterPosition animated:(BOOL)animated
 {
 	CGFloat offset = splitterPosition;
-	if ((UIInterfaceOrientationIsLandscape(self.interfaceOrientation)))
+	if (self.view.frame.size.width > self.view.frame.size.height)
 		offset -= self.splitterView.frame.origin.x;
 	else
 		offset -= self.splitterView.frame.origin.y;
 	[self splitterView:self.splitterView moveByOffset:offset - floorf(SPLITTER_LENGTH/2)];
 }
-
-@synthesize controller1=_controller1;
-@synthesize controller2=_controller2;
-@synthesize splitterView=_splitterView;
-@synthesize minimumView1Size=_minimumView1Size;
-@synthesize minimumView2Size=_minimumView2Size;
-@synthesize delegate=_delegate;
 @end
 
 @implementation AMSplitContainer

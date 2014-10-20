@@ -107,7 +107,7 @@
 	if (ovalRect.origin.x < 0) ovalRect.origin.x = 0;
 	if (portrait)
 		ovalRect = CGRectMake(0, 0, ovalRect.size.height, ovalRect.size.width);
-	UIColor *ovalColor = [UIColor colorWithHexString:@"cbcbcb"];
+	UIColor *ovalColor = [UIColor colorWithRed:0.796 green:0.796 blue:0.796 alpha:1];
 	UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:ovalRect cornerRadius:12];
 	[ovalColor setFill];
 	[path fill];
