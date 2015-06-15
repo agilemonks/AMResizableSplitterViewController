@@ -64,10 +64,18 @@
 	[self adjustToDefaultFrames];
 }
 
--(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
+-(void)viewDidAppear:(BOOL)animated
 {
-	[UIView animateWithDuration:duration animations:^{
-		[self rotateChildren:toInterfaceOrientation];
+	[super viewDidAppear:animated];
+	[self adjustToDefaultFrames];
+}
+
+-(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(nonnull id<UIViewControllerTransitionCoordinator>)coordinator
+{
+	[coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  __nonnull context) {
+		[self layoutChildrenForSize:size];
+	} completion:^(id<UIViewControllerTransitionCoordinatorContext>  __nonnull context) {
+		
 	}];
 }
 
@@ -75,6 +83,8 @@
 
 -(void)viewFrameDidChange
 {
+	if (nil == self.view.window)
+		return;
 	CGRect winFrame = self.view.window.frame;
 	BOOL isWide = winFrame.size.width > winFrame.size.height;
 	CGRect ourFrame = self.view.frame;
@@ -110,9 +120,9 @@
 	self.splitterView.frame = rs;
 }
 
--(void)rotateChildren:(UIInterfaceOrientation)destOrientation
+-(void)layoutChildrenForSize:(CGSize)size
 {
-	BOOL toLand = UIInterfaceOrientationIsLandscape(destOrientation);
+	BOOL toLand = size.width > size.height;
 	CGRect dividerFrame = self.splitterView.frame;
 	CGRect r1 = self.controller1.view.frame;
 	CGRect r2 = self.controller2.view.frame;
@@ -145,6 +155,10 @@
 		r2.size.width += halfBar;
 		dividerFrame.size.width += halfBar;
 	}
+	//the following is a hack required with ios 8's new rules. I'm not sure why.
+	if (!toLand) {
+		dividerFrame.size.width = r1.size.width = r2.size.width = 768;
+	}
 	//set the frames
 	self.splitterView.frame = dividerFrame;
 	self.controller1.view.frame = r1;
@@ -153,6 +167,8 @@
 
 -(void)adjustToDefaultFrames
 {
+	if (self.view.window == nil)
+		return;
 	CGRect winFrame = self.view.window.frame;
 	BOOL isWide = winFrame.size.width > winFrame.size.height;
 	CGRect ourFrame = self.view.frame;
@@ -275,6 +291,6 @@
 -(void)setFrame:(CGRect)frame
 {
 	[super setFrame:frame];
-	[self.controller viewFrameDidChange];
+//	[self.controller viewFrameDidChange];
 }
 @end
